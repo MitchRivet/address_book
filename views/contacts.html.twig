@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Address Book</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+<h1>Contacts</h1>
+      <!-- will post contacts if contacts is not empty -->
+      {% if contacts is not empty %}
+
+      <p>Here are your contacts:</p>
+      <ul>
+        <!-- using a foreach loop in twig syntax, printing name, number and address -->
+        {% for contact in contacts %}
+          <li>{{ contact.getContactName }}</li>
+          <ul>
+              <li>Phone Number: {{ contact.getContactNumber }}</li>
+              <li>Address: {{ contact.getContactAddress }}</li>
+          </ul>
+           <!-- ends the foreach loop -->
+      {% endfor %}
+      </ul>
+      <!-- ends the whole if statement -->
+      {% endif %}
+      <!--  creating the user submission form -->
+      <form action=/'create_contact' method='post'>
+        <div class='form-group'>
+          <label for='name'>Contact Name:</label>
+          <input class='form-control' id='name' name='name' type='text'><br>
+          <label for='number'>Contact Number:</label>
+          <input class='form-control' id='number' name='number' type='text'><br>
+          <label for='address'>Contact Address:</label>
+          <input class='form-control' id='address' name='address' type='text'><br>
+        </div>
+
+        <button type='submit'>Submit</button>
+
+      </form>
+      <!-- creating the delete button -->
+      <form action='delete_contacts' method='post'>
+        <button type='submit'>Clear</button>
+      </form>
+
+    </div>
+
+</body>
+</html>
