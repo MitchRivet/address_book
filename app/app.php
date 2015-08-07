@@ -11,6 +11,7 @@
     }
     //initialize the application
     $app = new Silex\Application();
+    $app['debug'] = true;
     //tell the app where to get twig and where we will be pulling our twig files
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
       'twig.path' => __DIR__.'/../views'
@@ -22,6 +23,7 @@
     });
     //this route is for the contact created confirmation page
     //it will post the information recieved from the form on the home page and use the save method to store to the $_SESSSION['list_of_contacts'] array
+
     $app->post("/create_contact", function() use ($app) {
         $contact = new Contact($_POST['name'], $_POST['number'], $_POST['address']);
         $contact->save();
